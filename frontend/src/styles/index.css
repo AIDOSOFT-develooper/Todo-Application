@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-purple: #6c63ff;
+}
+
+.main-border {
+  @apply border-purple rounded-xl border-2 border-solid py-2 font-bold;
+}
+
+.button {
+  @apply bg-purple cursor-pointer rounded-xl p-3 font-bold text-white;
+}
+
+.inline-button {
+  @apply border-purple text-purple cursor-pointer rounded-xl border-1 p-3;
+}
+
+.checkbox {
+  @apply border-purple h-6 w-6 cursor-pointer border-1;
+}
+
+.checkbox-checked {
+  @apply checked:bg-purple checked:bg-[url('../../public/img/icons/done.svg')] checked:bg-position-[center_30%] checked:bg-no-repeat;
+}
