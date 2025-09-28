@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addActive } from "../../store/slice/activeSlice";
-import { postTodos } from "../../api/getTodos";
+import { postTodos } from "../../service/api";
 import type { todo } from "../../types/types";
 import { addTodo } from "../../store/slice/todosSlice";
 

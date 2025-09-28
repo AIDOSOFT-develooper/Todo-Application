@@ -2,19 +2,28 @@ import { useDispatch } from "react-redux";
 import { addActive, changeActive } from "../store/slice/activeSlice";
 import { changeTodo, setTodoName } from "../store/slice/todosSlice";
 import { useAppSelector, type RootState } from "../store/store";
+import { useEffect } from "react";
+import { putTodo } from "../service/api";
 
 export default function ChangeTodo() {
   const todoId = useAppSelector((state: RootState) => state.todos.id);
-  const todoName = useAppSelector(
+  const todoName: string = useAppSelector(
     (state: RootState) => state.todos.changingTodo,
   );
 
   const dispatch = useDispatch();
 
   const changeTodoHandler = () => {
-    if (todoId) dispatch(changeTodo({ id: todoId, todo: todoName }));
+    if (todoId) {
+      dispatch(changeTodo({ id: todoId, todo: todoName }));
+    }
+
     dispatch(addActive(false));
   };
+
+  useEffect(() => {
+    putTodo(todoName).then((response) => response);
+  }, []);
 
   return (
     <div className="relative cursor-auto">
