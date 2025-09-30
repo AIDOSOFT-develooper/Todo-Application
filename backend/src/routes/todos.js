@@ -13,6 +13,6 @@ router
     .get("/:todoId", getSingleTodo)
     .post("/:todoId", postTodo)
     .delete("/:todoId", deleteTodo)
-    .put("/:todoId", changeTodo);
+    .patch("/:todoId", changeTodo);
 
 module.exports = router;

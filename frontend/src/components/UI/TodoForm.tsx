@@ -1,11 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addActive } from "../../store/slice/activeSlice";
-import { postTodos } from "../../service/api";
 import type { todo } from "../../types/types";
 import { addTodo } from "../../store/slice/todosSlice";
+import { useCreateMutation } from "../../service/useMutations";
 
 export default function TodoForm() {
+  const { mutate } = useCreateMutation();
+
   const [text, setText] = useState("");
 
   const dispatch = useDispatch();
@@ -17,10 +19,9 @@ export default function TodoForm() {
       isCompleted: false,
     };
 
+    mutate(newTodo);
+
     dispatch(addTodo(newTodo));
-
-    postTodos(newTodo).then((response) => response);
-
     dispatch(addActive(false));
   };
 

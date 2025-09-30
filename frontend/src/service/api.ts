@@ -13,10 +13,10 @@ export const postTodos = async (todo: todo) => {
   return response.data;
 };
 
-export const deletePost = async () => {
-  return await axios.delete(`${API}/${1}`);
+export const deletePost = async (id: number) => {
+  return await axios.delete(`${API}/${id}`);
 };
 
-export const putTodo = async (todo: string) => {
-  return await axios.put(`${API}/1`, { todo: todo });
+export const patchTodo = async (id: number, todo: string) => {
+  return await axios.patch(`${API}/${id}`, { todo: todo });
 };

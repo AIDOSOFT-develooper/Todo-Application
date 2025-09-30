@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { addActive, changeActive } from "../store/slice/activeSlice";
+import { changeActive } from "../store/slice/activeSlice";
 import { changeTodo, setTodoName } from "../store/slice/todosSlice";
 import { useAppSelector, type RootState } from "../store/store";
-import { useEffect } from "react";
-import { putTodo } from "../service/api";
+import { useChangeMutation } from "../service/useMutations";
 
 export default function ChangeTodo() {
+  const { mutate } = useChangeMutation();
+
   const todoId = useAppSelector((state: RootState) => state.todos.id);
   const todoName: string = useAppSelector(
     (state: RootState) => state.todos.changingTodo,
@@ -16,14 +17,11 @@ export default function ChangeTodo() {
   const changeTodoHandler = () => {
     if (todoId) {
       dispatch(changeTodo({ id: todoId, todo: todoName }));
+      mutate({ id: todoId, todo: todoName });
     }
 
-    dispatch(addActive(false));
+    dispatch(changeActive(false));
   };
-
-  useEffect(() => {
-    putTodo(todoName).then((response) => response);
-  }, []);
 
   return (
     <div className="relative cursor-auto">
