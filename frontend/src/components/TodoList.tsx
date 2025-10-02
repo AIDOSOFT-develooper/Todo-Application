@@ -1,19 +1,35 @@
+import { useDispatch } from "react-redux";
+import { useAppSelector, type RootState } from "../store/store";
 import Todos from "./UI/Todos";
+import { toggleTheme } from "../store/slice/themeSlice";
 
 export default function TodoList() {
+  const theme = useAppSelector((state: RootState) => state.theme.mode);
+  const dispatch = useDispatch();
+
   return (
     <div className="relative h-full text-center">
       <div className="mb-7.5">
-        <h1 className="mb-4 text-xl font-bold lg:text-3xl">TODO LIST</h1>
+        <h1 className="mb-4 text-xl font-bold lg:text-3xl dark:text-white">
+          TODO LIST
+        </h1>
 
         <div className="flex justify-between gap-4">
           <form className="main-border w-full" action="">
             <input
-              className="h-full w-full overflow-hidden border-none pl-5 outline-0"
+              className="h-full w-full overflow-hidden border-none pl-5 outline-0 dark:placeholder:text-white"
               type="text"
               placeholder="Search note..."
             />
           </form>
+
+          <button className="button" onClick={() => dispatch(toggleTheme())}>
+            {theme === "dark" ? (
+              <img src="/img/icons/sun.svg" alt="Switch to light mode" />
+            ) : (
+              <img src="/img/icons/moon.svg" alt="Switch to dark mode" />
+            )}
+          </button>
         </div>
       </div>
 

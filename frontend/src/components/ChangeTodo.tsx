@@ -1,19 +1,26 @@
 import { useDispatch } from "react-redux";
-import { addActive, changeActive } from "../store/slice/activeSlice";
+import { changeActive } from "../store/slice/activeSlice";
 import { changeTodo, setTodoName } from "../store/slice/todosSlice";
 import { useAppSelector, type RootState } from "../store/store";
+import { useChangeMutation } from "../service/useMutations";
 
 export default function ChangeTodo() {
+  const { mutate } = useChangeMutation();
+
   const todoId = useAppSelector((state: RootState) => state.todos.id);
-  const todoName = useAppSelector(
+  const todoName: string = useAppSelector(
     (state: RootState) => state.todos.changingTodo,
   );
 
   const dispatch = useDispatch();
 
   const changeTodoHandler = () => {
-    if (todoId) dispatch(changeTodo({ id: todoId, todo: todoName }));
-    dispatch(addActive(false));
+    if (todoId) {
+      dispatch(changeTodo({ id: todoId, todo: todoName }));
+      mutate({ id: todoId, todo: todoName });
+    }
+
+    dispatch(changeActive(false));
   };
 
   return (

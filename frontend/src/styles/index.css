@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-purple: #6c63ff;
+  --color-dark: #252525;
 }
 
 .main-border {
-  @apply border-purple rounded-xl border-2 border-solid py-2 font-bold;
+  @apply border-purple rounded-xl border-2 border-solid py-2 font-bold dark:border-white;
 }
 
 .button {

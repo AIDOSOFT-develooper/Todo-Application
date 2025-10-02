@@ -1,5 +1,5 @@
 const getHomePage = (request, response) => {
-    response.send("Homepage");
+    response.send("You're on the HomePage");
 };
 
 module.exports = {

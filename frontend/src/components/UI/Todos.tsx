@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { getTodos } from "../../api/getTodos";
+import { useQuery } from "@tanstack/react-query";
+import { getTodos } from "../../service/api";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addedTodo,
@@ -10,8 +10,13 @@ import {
 import { useAppSelector, type RootState } from "../../store/store";
 import { changeActive } from "../../store/slice/activeSlice";
 import ChangeTodo from "../ChangeTodo";
+import { useEffect } from "react";
+import { useDeleteMutation } from "../../service/useMutations";
+import Empty from "./Empty";
 
 export default function Todos() {
+  const { mutate } = useDeleteMutation();
+
   const todos = useAppSelector((state: RootState) => state.todos.todo);
 
   const active = useSelector(
@@ -20,9 +25,24 @@ export default function Todos() {
 
   const dispatch = useDispatch();
 
+  const useGetTodos = useQuery({
+    queryKey: ["todo"],
+    queryFn: getTodos,
+  });
+
+  const { data, isLoading } = useGetTodos;
+
   useEffect(() => {
-    getTodos().then((response) => dispatch(addedTodo(response)));
-  }, []);
+    if (data) {
+      dispatch(addedTodo(data));
+    }
+  }, [data, dispatch]);
+
+  if (isLoading) <div>Loading...</div>;
+
+  if (!todos || todos.length === 0) {
+    return <Empty />;
+  }
 
   return (
     <ul className="h-auto">
@@ -39,7 +59,7 @@ export default function Todos() {
               onChange={() => dispatch(toggledTodo(todo.id))}
             />
             <span
-              className={`${todo.isCompleted ? "text-[#252525]/50 line-through" : ""} text-xl font-bold select-none`}
+              className={`${todo.isCompleted ? "text-[#252525]/50 line-through dark:text-white/50" : ""} text-xl font-bold select-none dark:text-white`}
             >
               {todo.todo}
             </span>
@@ -69,7 +89,10 @@ export default function Todos() {
                 alt="Trash"
                 width={20}
                 height={20}
-                onClick={() => dispatch(remove(todo.id))}
+                onClick={() => {
+                  mutate(todo.id);
+                  dispatch(remove(todo.id));
+                }}
               />
             </div>
           </div>

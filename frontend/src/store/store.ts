@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import todoReducer from "./slice/todosSlice";
 import activeReducer from "./slice/activeSlice";
+import themeReducer from "./slice/themeSlice";
 import { useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     todos: todoReducer,
     active: activeReducer,
+    theme: themeReducer,
   },
 });
 
