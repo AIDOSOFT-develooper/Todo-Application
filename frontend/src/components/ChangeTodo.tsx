@@ -32,7 +32,7 @@ export default function ChangeTodo() {
 
         <form className="flex flex-col">
           <input
-            className="border-purple placeholder:text-md mb-[120px] w-[440px] overflow-hidden rounded-sm border-1 p-2 outline-none placeholder:text-[#C3C1E5] dark:border-white"
+            className="border-purple placeholder:text-md mb-[120px] w-[440px] overflow-hidden rounded-sm border-1 p-2 outline-none placeholder:text-[#C3C1E5] dark:border-white dark:text-white"
             type="text"
             placeholder="Input your note..."
             onChange={(event) => dispatch(setTodoName(event.target.value))}

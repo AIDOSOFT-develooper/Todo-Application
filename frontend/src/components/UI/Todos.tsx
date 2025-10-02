@@ -19,6 +19,12 @@ export default function Todos() {
 
   const todos = useAppSelector((state: RootState) => state.todos.todo);
 
+  const { todo, filter } = useAppSelector((state: RootState) => state.todos);
+
+  const filteredTodos = todo.filter((todo) =>
+    todo.todo.toLowerCase().includes(filter.toLowerCase()),
+  );
+
   const active = useSelector(
     (state: RootState) => state.active.changeTodoActive,
   );
@@ -46,7 +52,7 @@ export default function Todos() {
 
   return (
     <ul className="h-auto">
-      {todos.map((todo) => (
+      {filteredTodos.map((todo) => (
         <li
           key={todo.id}
           className="border-purple mx-auto mb-10 flex max-w-[520px] items-center justify-between border-b-1 pb-4 lg:max-w-[720px]"

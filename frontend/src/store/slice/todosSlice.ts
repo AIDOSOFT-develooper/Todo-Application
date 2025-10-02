@@ -1,12 +1,17 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { todo } from "../../types/types";
 
-const initialState: { todo: todo[]; id: number | null; changingTodo: string } =
-  {
-    todo: [],
-    id: null,
-    changingTodo: "",
-  };
+const initialState: {
+  todo: todo[];
+  id: number | null;
+  changingTodo: string;
+  filter: string;
+} = {
+  todo: [],
+  id: null,
+  changingTodo: "",
+  filter: "",
+};
 
 const todoSlice = createSlice({
   name: "todo",
@@ -43,6 +48,10 @@ const todoSlice = createSlice({
       const found = state.todo.find((todo) => todo.id === actions.payload);
       state.id = found ? found.id : null;
     },
+
+    filterTodo(state, actions: PayloadAction<string>) {
+      state.filter = actions.payload;
+    },
   },
 });
 
@@ -54,5 +63,6 @@ export const {
   changeTodo,
   setTodoName,
   findTodo,
+  filterTodo,
 } = todoSlice.actions;
 export default todoSlice.reducer;

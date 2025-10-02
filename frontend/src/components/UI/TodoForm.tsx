@@ -29,12 +29,12 @@ export default function TodoForm() {
     <div className="relative cursor-auto">
       <div className="fixed inset-0 z-40 bg-black/40" />
 
-      <div className="dark:bg-dark fixed top-[30%] left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-white p-4 text-center dark:border dark:border-white">
+      <div className="dark:bg-dark fixed top-[30%] left-1/2 z-50 w-[290px] -translate-x-1/2 rounded-2xl bg-white p-4 text-center md:w-[500px] dark:border dark:border-white">
         <h5 className="mb-6 text-2xl font-bold dark:text-white">New Note</h5>
 
         <form className="flex flex-col">
           <input
-            className="border-purple placeholder:text-md mb-[120px] w-[440px] overflow-hidden rounded-sm border-1 p-2 outline-none placeholder:text-[#C3C1E5] dark:border-white dark:text-white dark:placeholder:text-white"
+            className="border-purple placeholder:text-md mb-[120px] w-auto overflow-hidden rounded-sm border-1 p-2 outline-none placeholder:text-[#C3C1E5] dark:border-white dark:text-white dark:placeholder:text-white"
             type="text"
             placeholder="Input your note..."
             onChange={(event) => setText(event.target.value)}
