@@ -68,7 +68,7 @@ export default function Todos() {
           <div className="flex gap-2">
             <div className="cursor-pointer">
               <img
-                src="public/img/icons/pen.svg"
+                src="/img/icons/pen.svg"
                 alt="Pen"
                 width={20}
                 height={20}
@@ -85,7 +85,7 @@ export default function Todos() {
 
             <div className="cursor-pointer">
               <img
-                src="public/img/icons/trash.svg"
+                src="/img/icons/trash.svg"
                 alt="Trash"
                 width={20}
                 height={20}

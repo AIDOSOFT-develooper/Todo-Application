@@ -27,12 +27,12 @@ export default function ChangeTodo() {
     <div className="relative cursor-auto">
       <div className="fixed inset-0 z-40 bg-black/10" />
 
-      <div className="fixed top-[30%] left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-white p-4 text-center">
-        <h5 className="mb-6 text-2xl font-bold">Change Todo</h5>
+      <div className="dark:bg-dark fixed top-[30%] left-1/2 z-50 -translate-x-1/2 rounded-2xl bg-white p-4 text-center">
+        <h5 className="mb-6 text-2xl font-bold dark:text-white">Change Todo</h5>
 
         <form className="flex flex-col">
           <input
-            className="border-purple placeholder:text-md mb-[120px] w-[440px] overflow-hidden rounded-sm border-1 p-2 outline-none placeholder:text-[#C3C1E5]"
+            className="border-purple placeholder:text-md mb-[120px] w-[440px] overflow-hidden rounded-sm border-1 p-2 outline-none placeholder:text-[#C3C1E5] dark:border-white"
             type="text"
             placeholder="Input your note..."
             onChange={(event) => dispatch(setTodoName(event.target.value))}

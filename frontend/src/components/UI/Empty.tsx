@@ -6,9 +6,9 @@ export default function Empty() {
   return (
     <div className="flex flex-col items-center justify-center">
       {theme === "dark" ? (
-        <img className="mb-5" src="public/img/empty-dark.svg" alt="" />
+        <img className="mb-5" src="/img/empty-dark.svg" alt="" />
       ) : (
-        <img className="mb-5" src="public/img/empty.svg" alt="" />
+        <img className="mb-5" src="/img/empty.svg" alt="" />
       )}
 
       <div className="text-xl font-bold dark:text-white">Empty...</div>

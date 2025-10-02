@@ -12,7 +12,7 @@ export default function AddTodo() {
       <div className="bg-purple fixed bottom-6 flex h-12.5 w-12.5 cursor-pointer items-center justify-center justify-self-end rounded-full">
         <img
           className=""
-          src="../../public/img/icons/plus.svg"
+          src="/img/icons/plus.svg"
           alt="Add"
           width={24}
           height={24}
