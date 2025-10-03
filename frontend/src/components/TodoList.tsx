@@ -18,6 +18,7 @@ export default function TodoList() {
             countryCode="KZ"
             svg
             style={{ width: "2em", height: "2em", marginInline: "20px" }}
+            alt="Kazakhstan Flag"
           />
           BY AIDOSOFT
         </h1>
